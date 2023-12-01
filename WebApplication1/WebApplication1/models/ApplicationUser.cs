@@ -2,7 +2,7 @@
 
 namespace WebApplication1.models
 {
-    public class applecationuser : IdentityUser
+    public class ApplicationUser : IdentityUser
 
     {
         public string fname { get; set; }

@@ -34,7 +34,7 @@ namespace WebApplication
            
             services.AddScoped<IAuthService, AuthService>();
 
-            services.AddIdentity<applecationuser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                  .AddEntityFrameworkStores<appDbcontext1>()
                  .AddDefaultTokenProviders();
 

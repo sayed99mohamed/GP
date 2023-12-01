@@ -15,12 +15,12 @@ namespace WebApplication1.Repository.Services
     public class AuthService : IAuthService
 
     {
-        private readonly UserManager<WebApplication1.models.applecationuser> _userManager;
+        private readonly UserManager<WebApplication1.models.ApplicationUser> _userManager;
       
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly JWT _jwt;
        
-        public AuthService(UserManager<applecationuser> userManager, RoleManager<IdentityRole> roleManager, IOptions<JWT> jwt)
+        public AuthService(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IOptions<JWT> jwt)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -80,7 +80,7 @@ namespace WebApplication1.Repository.Services
             if (await _userManager.FindByNameAsync(model.Username) is not null)
                 return new AuthModel { Message = "Username is already registered!" };
             // var user = _mapper.Map<applecationuser>(model);
-            var user = new applecationuser
+            var user = new ApplicationUser
             {
                 UserName = model.Username,
                 Email = model.Email,
@@ -114,7 +114,7 @@ namespace WebApplication1.Repository.Services
                 Username = user.UserName
             };
         }
-        private async Task<JwtSecurityToken> CreateJwtToken(applecationuser user)
+        private async Task<JwtSecurityToken> CreateJwtToken(ApplicationUser user)
         {
             var userClaims = await _userManager.GetClaimsAsync(user);
             var roles = await _userManager.GetRolesAsync(user);
@@ -145,5 +145,8 @@ namespace WebApplication1.Repository.Services
 
             return jwtSecurityToken;
         }
+
+
+
     }
 }
