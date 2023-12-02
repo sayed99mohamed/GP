@@ -85,7 +85,9 @@ namespace WebApplication1.Repository.Services
                 UserName = model.Username,
                 Email = model.Email,
                 fname = model.FirstName,
-                lname = model.LastName
+                lname = model.LastName,
+                Birthdate = model.Birthdate,
+                PhoneNumber = model.PhoneNumber
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
