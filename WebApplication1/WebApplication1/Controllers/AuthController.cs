@@ -36,6 +36,8 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost("login")]
+        [ProducesResponseType(400)]
+
         public async Task<IActionResult> login([FromBody] TokenRequestModel model)
         {
             if (!ModelState.IsValid)

@@ -47,7 +47,15 @@ namespace WebApplication
 
 
 
-
+            services.AddCors(Options =>
+            {
+                Options.AddPolicy("MyPoilcy", options =>
+                {
+                    options.AllowAnyHeader();
+                    options.AllowAnyMethod();
+                    options.AllowAnyOrigin();
+                });
+            });
 
             services.AddAuthentication(options =>
             {
@@ -92,8 +100,9 @@ namespace WebApplication
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors("MyPoilcy");
             app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
